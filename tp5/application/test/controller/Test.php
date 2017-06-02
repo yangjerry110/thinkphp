@@ -2,13 +2,15 @@
 /* 
 * @Author: yangjie-jerry
 * @Date:   2017-05-10 17:41:46
-* @Last Modified by:   yangjie-jerry
-* @Last Modified time: 2017-05-11 16:24:58
+* @Last Modified by:   Jerry Yang
+* @Last Modified time: 2017-06-01 11:53:23
 */
 
 namespace app\Test\controller;
 
 use \think\View;
+use \think\Controller;
+
 /**
 * 
 */
@@ -22,10 +24,11 @@ class Test
 
     public function test()
     {
+        echo hash('sha256','123456');exit;
         // 不带任何参数 自动定位当前操作的模板文件
         $tranData = $this->groupTranData();
         //echo $tranData;exit;
-        $view = new View();
+        //$view = new View();
         $view->name = 'jerry';
         return $view->fetch();
     }

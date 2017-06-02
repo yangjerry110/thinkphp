@@ -1,0 +1,81 @@
+
+ <form action="" id="adminLoginForm">
+<div class="adminLogin-content">
+    <!--下面是用户名输入框-->
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">@</span>
+      <input name="userName" type="text" class="form-control" placeholder="用户名" aria-describedby="basic-addon1">
+    </div>
+    <br>
+    <!--下面是密码输入框-->
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">@</span>
+      <input name="passWord" type="password" class="form-control" placeholder="密码" aria-describedby="basic-addon1">
+    </div>
+    <br>
+    <!--下面是登陆按钮,包括颜色控制-->
+    <button type="button" class="btn btn-default adminLogin-btn">登 录</button>
+    </div>
+</form>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+  $('.adminLogin-btn').click(function() {
+    ajaxPost('adminLoginForm','post','../admin/loginCheck.html');
+  });
+
+ $(document).keydown(function(event){ 
+    if(event.keyCode==13){ 
+        ajaxPost('adminLoginForm','post','../admin/loginCheck.html');
+    } 
+}); 
+
+  function ajaxPost(formId,type,url){
+    var formData = $("#"+formId).serialize();
+    console.log(formData);
+    
+    //modal.show();
+    //serialize() 方法通过序列化表单值，创建 URL 编码文本字符串,这个是jquery提供的方法  
+    $.ajax({  
+      type:type,  
+      url:url,  
+      data:formData,//这里data传递过去的是序列化以后的字符串
+      error:function(error)
+      {
+        $('#myModal-small .modal-title').html('登陆信息提示');
+        $('#myModal-small .modal-body').html('信息提交错误！请重新提交');
+        $('#myModal-small').modal('show');
+      },  
+      success:function(data){
+      //console.log(1111);  
+        //$('#modalContent').val(data.data);
+        $('#myModal-small .modal-title').html('登陆信息提示');
+        $('#myModal-small .modal-body').html(data.data);
+        $('#myModal-small').modal('show');
+        if(data.error ==0)
+        {
+          setTimeout(window.location.href='../admin/index.html',3000);
+        }
+        //modal.show();
+        }  
+      });  
+    }  
+
+  //提示框
+    /*
+    var modal = $.scojs_modal({
+      //alert($('#modalContent').val());
+      title: '提示信息',
+      content: $('#modalContent').val(),
+      width:'400',
+      height:'200',
+      cssclass:'addClass',
+      top:'20%',
+      left:'35%',
+    });
+  */
+
+});
+</script>

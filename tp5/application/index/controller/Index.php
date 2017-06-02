@@ -1,6 +1,7 @@
 <?php
 namespace app\index\controller;
-
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 class Index
 {
     public function index()

@@ -1,0 +1,83 @@
+<div class=content>
+    <div class="top">
+    </div>
+    <form action="" id="nameForm">
+      <div class="main">
+          <div class="name">
+              <span class="fl span-name">您的姓名：</span>
+              <input type="text" class="form-control text-name fl" name="fullName" placeholder="您的姓名">
+              <div class="cl"></div>
+          </div>
+          <div class="name">
+              <span class="fl span-name">您的用户名：</span>
+              <input type="text" class="form-control text-name fl" name="userName" placeholder="您的用户名">
+              <div class="cl"></div>
+          </div>
+          <div class="name">
+              <span class="fl span-name">您的手机：</span>
+              <input type="text" class="form-control text-name fl" name="userPhone" placeholder="您的手机">
+              <div class="cl"></div>
+          </div>
+          <div class="name">
+              <span class="fl span-name">您的邮箱：</span>
+              <input type="text" class="form-control text-name fl" name="userEmail" placeholder="您的邮箱">
+              <div class="cl"></div>
+          </div>
+          <input type="hidden" id="modalContent" value="">
+          <div class="name-buttom">
+              <button type="button" class="btn name-button btn-primary modal_triggers">填完点我</button>
+          </div>
+        </div>
+     </form>
+</div>
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+  $('.modal_triggers').click(function() {
+    ajaxPost('name-from','post','../testAjax/5.html');
+  });
+
+  function ajaxPost(formId,type,url){
+    var formData = $("#nameForm").serialize();
+    console.log(formData);
+    
+    //modal.show();
+    //serialize() 方法通过序列化表单值，创建 URL 编码文本字符串,这个是jquery提供的方法  
+    $.ajax({  
+      type:type,  
+      url:url,  
+      data:formData,//这里data传递过去的是序列化以后的字符串
+      error:function(error)
+      {
+        alert('error');
+      },  
+      success:function(data){
+      //console.log(1111);  
+        //$('#modalContent').val(data.data);
+        $('#myModal-small .modal-title').html('注册信息提示');
+        $('#myModal-small .modal-body').html(data.data);
+        $('#myModal-small').modal('show');
+        //modal.show();
+        }  
+      });  
+    }  
+
+  //提示框
+    /*
+    var modal = $.scojs_modal({
+      //alert($('#modalContent').val());
+      title: '提示信息',
+      content: $('#modalContent').val(),
+      width:'400',
+      height:'200',
+      cssclass:'addClass',
+      top:'20%',
+      left:'35%',
+    });
+  */
+
+});
+</script>

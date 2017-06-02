@@ -40,3 +40,22 @@ Route::rule('deletemysql/:id','test/TestMySql/test3','GET',['ext'=>'html']);
 //数据库分组练习
 Route::rule('groupmysql/:id','test/TestMySql/test4','GET',['ext'=>'html']);
 
+//模型练习，以及模板练习
+Route::rule('testNew/:id','test/TestNew/index','GET',['ext'=>'html']);
+
+//ajax练习
+Route::rule('testAjax/:id','test/TestNew/testAjax','POST',['ext'=>'html']);
+
+//詹姆斯网站
+//首页
+Route::rule('james/index','james/Index/index','GET',['ext'=>'html']);
+
+
+//后台会员登陆
+Route::rule('admin/login','cms/AdminLogin/index','GET',['ext'=>'html']);
+
+//后台会员登陆验证
+Route::rule('admin/loginCheck','cms/AdminLogin/loginCheck','POST',['ext'=>'html']);
+
+//后台首页
+Route::rule('admin/index','cms/AdminIndex/index','GET',['ext'=>'html']);

@@ -1,0 +1,23 @@
+<div class="admin-left">
+<div class="accordion" id="accordion">
+    {foreach name='leftMenu' item='item'}
+    
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#{$key}chindren">
+            {$item.name}
+          </a>
+        </div>
+        <div id="{$key}chindren" class="accordion-body collapse in">
+          <div class="accordion-inner">
+            <ul>
+                {foreach name='$item.list' item='chindrenItem'}
+                <li><a href="#">{$chindrenItem}</a></li>
+                {/foreach}
+            </ul>
+          </div>
+        </div>
+      </div>
+    {/foreach}
+    </div>
+</div>

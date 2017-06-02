@@ -30,6 +30,8 @@ return [
     'root_namespace'         => [],
     // 扩展函数文件
     'extra_file_list'        => [THINK_PATH . 'helper' . EXT],
+     //扩展配置
+    //'extra_config_list' => ['adminmenu'],
     // 默认输出类型
     'default_return_type'    => 'html',
     // 默认AJAX 数据返回格式,可选json xml ...
@@ -50,6 +52,10 @@ return [
     'class_suffix'           => false,
     // 控制器类后缀
     'controller_suffix'      => false,
+    //添加扩展函数
+    //'LOAD_EXT_FILE' => 'adminMenu.php',
+    //'extra_file_list'        => [ APP_PATH . 'helper.php', THINK_PATH . 'helper.php', APP_PATH . 'adminMenu.php'],
+    //'extra_file_list'        => [ APP_PATH . 'helper.php', THINK_PATH . 'helper.php', APP_PATH . 'adminPower.php'],
 
     // +----------------------------------------------------------------------
     // | 模块设置
@@ -71,6 +77,7 @@ return [
     'action_suffix'          => '',
     // 自动搜索控制器
     'controller_auto_search' => false,
+   
 
     // +----------------------------------------------------------------------
     // | URL设置
@@ -138,6 +145,8 @@ return [
         'taglib_begin' => '{',
         // 标签库标签结束标记
         'taglib_end'   => '}',
+        'layout_on'     =>  true,
+        'layout_name'   =>  'layout',
     ],
 
     // 视图输出字符串内容替换
@@ -186,14 +195,29 @@ return [
     // +----------------------------------------------------------------------
 
     'cache'                  => [
-        // 驱动方式
-        'type'   => 'File',
-        // 缓存保存目录
-        'path'   => CACHE_PATH,
-        // 缓存前缀
-        'prefix' => '',
-        // 缓存有效期 0表示永久缓存
-        'expire' => 0,
+        // 使用复合缓存类型
+        'type'  =>  'complex',
+        // 默认使用的缓存
+        'default'   =>  [
+            // 驱动方式
+            'type'   => 'File',
+            // 缓存保存目录
+            'path'   => CACHE_PATH,
+        ],
+        // 文件缓存
+        'file'   =>  [
+            // 驱动方式
+            'type'   => 'file',
+            // 设置不同的缓存保存目录
+            'path'   => RUNTIME_PATH . 'file/',
+        ],  
+        // redis缓存
+        'redis'   =>  [
+            // 驱动方式
+            'type'   => 'redis',
+            // 服务器地址
+            'host'       => '127.0.0.1',
+    ],     
     ],
 
     // +----------------------------------------------------------------------
