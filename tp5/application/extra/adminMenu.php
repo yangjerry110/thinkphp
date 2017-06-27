@@ -3,7 +3,7 @@
 * @Author: Jerry Yang
 * @Date:   2017-06-01 15:10:33
 * @Last Modified by:   Jerry Yang
-* @Last Modified time: 2017-06-02 15:00:21
+* @Last Modified time: 2017-06-27 11:15:21
 * @配置后台菜单
 */
 
@@ -15,6 +15,7 @@
                  'userList' => '会员列表',
                  'userInfo' => '会员详情',
                  'userEdit' => '会员信息修改',
+                 'userExit' => '会员退出',
             ],
             'name' => '会员操作',
         ],

@@ -3,7 +3,7 @@
 * @Author: Jerry Yang
 * @Date:   2017-06-01 10:25:42
 * @Last Modified by:   Jerry Yang
-* @Last Modified time: 2017-06-02 17:36:56
+* @Last Modified time: 2017-06-27 11:58:50
 * @后台会员登陆的相关的函数
 */
 
@@ -28,11 +28,13 @@ class AdminLogin extends controller
         //检查是否登录
         if($this->checkLoginStatus())
         {
-          echo '111';
+          //echo '111';
           //重定向
           $this->redirect('cms/AdminIndex/index');
           exit;
         }
+
+        //echo hash('sha256','123456');exit;
 
         $data = ['type' => 'adminLogin'];
         return $this->fetch('index',$data);
@@ -76,9 +78,9 @@ class AdminLogin extends controller
             ];
 
             $getAdminId = db('adminUser')->field('id')->where('userName',$userName)->value('id');
-            //echo $getAdminId;exit;
             Cache::set('adminId',$getAdminId,86400);
             Cache::set('adminName',$userName,86400);
+            //print_r(Cache::get('adminId'));exit;
           }
 
           return $result;
@@ -115,7 +117,7 @@ class AdminLogin extends controller
        //根据会员账号查找对应的密码
        $passWordBySelect = db('adminUser')->field('passWord')
                                                                            ->where('userName',$userName)
-                                                                           ->value('passWord','id');
+                                                                           ->value('passWord');
 
         //如果为空就不存在此账号
         //print_r($passWordBySelect);exit;
@@ -143,6 +145,18 @@ class AdminLogin extends controller
         return $result;
 
 
+    }
+
+
+    /*
+    ** 后台管理员退出
+     */
+    public function userExit()
+    {
+        Cache::rm('adminId');
+        Cache::rm('adminName');
+
+        $this->redirect('cms/AdminLogin/index');
     }
 
 

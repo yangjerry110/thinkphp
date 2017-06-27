@@ -1,5 +1,4 @@
-
- <form action="" id="adminLoginForm">
+<form action="" id="adminLoginForm">
 <div class="adminLogin-content">
     <!--下面是用户名输入框-->
     <div class="input-group">
@@ -21,17 +20,14 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-
   $('.adminLogin-btn').click(function() {
     ajaxPost('adminLoginForm','post','../admin/loginCheck.html');
   });
-
  $(document).keydown(function(event){ 
     if(event.keyCode==13){ 
         ajaxPost('adminLoginForm','post','../admin/loginCheck.html');
     } 
 }); 
-
   function ajaxPost(formId,type,url){
     var formData = $("#"+formId).serialize();
     console.log(formData);
@@ -51,18 +47,23 @@ $(document).ready(function(){
       success:function(data){
       //console.log(1111);  
         //$('#modalContent').val(data.data);
-        $('#myModal-small .modal-title').html('登陆信息提示');
-        $('#myModal-small .modal-body').html(data.data);
-        $('#myModal-small').modal('show');
-        if(data.error ==0)
+        if(data.error != 0)
         {
-          setTimeout(window.location.href='../admin/index.html',3000);
+          $('#myModal-small .modal-title').html('登陆信息提示');
+          $('#myModal-small .modal-body').html(data.data);
+          $('#myModal-small').modal('show');
+        }
+        else
+        {
+          $('#myModal-small .modal-title').html('登陆信息提示');
+          $('#myModal-small .modal-body').html(data.data);
+          $('#myModal-small').modal('show');
+          window.setTimeout("window.location.href='../admin/index.html'",2000);
         }
         //modal.show();
         }  
       });  
     }  
-
   //提示框
     /*
     var modal = $.scojs_modal({
@@ -76,6 +77,5 @@ $(document).ready(function(){
       left:'35%',
     });
   */
-
 });
 </script>

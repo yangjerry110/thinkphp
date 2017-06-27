@@ -59,3 +59,13 @@ Route::rule('admin/loginCheck','cms/AdminLogin/loginCheck','POST',['ext'=>'html'
 
 //后台首页
 Route::rule('admin/index','cms/AdminIndex/index','GET',['ext'=>'html']);
+
+//后台会员退出
+Route::rule('admin/userExit','cms/AdminLogin/userExit','GET',['ext'=>'html']);
+
+//后台会员文章详情
+Route::rule('admin/articleInfo','cms/AdminArticle/info','GET',['ext'=>'html']);
+
+//后台会员文章列表
+Route::rule('admin/articleList','cms/AdminArticle/list','GET',['ext'=>'html']);
+
