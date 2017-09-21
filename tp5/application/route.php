@@ -54,6 +54,8 @@ Route::rule('testAjax/:id','test/TestNew/testAjax','POST',['ext'=>'html']);
 //首页
 Route::rule('james/index','james/Index/index','GET',['ext'=>'html']);
 
+//后台会员退出
+Route::rule('admin/loginOut','cms/AdminLogin/userExit','GET',['ext'=>'html']);
 
 //后台会员登陆
 Route::rule('admin/login','cms/AdminLogin/index','GET',['ext'=>'html']);
