@@ -1,0 +1,99 @@
+<form class="form-horizontal" id="adminAddForm">
+<div class="admin-right">
+    <div class="admin-right-content">
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">管理员名称</label>
+            <div class="col-sm-10 summernote-span">
+              <input type="email" name="adminUserName" class="form-control" id="inputEmail1" value="{if $adminUserInfo}{$adminUserInfo.userName}{/if}" placeholder="管理员名称">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">管理员密码</label>
+            <div class="col-sm-10 summernote-span">
+              <input type="email" name="adminPassWord" class="form-control" id="inputEmail3" placeholder="管理员密码">
+              {if $adminUserInfo}
+              <span id="helpBlock" class="help-block">注：修改管理员时，不填写密码则保持原密码不变，填写了，已修改的为准！！！</span>
+              {/if}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">权限列表</label>
+            {foreach name='adminPowerAll' item='item'}
+
+            <label class="checkbox-inline">
+              <input type="checkbox" name="adminUserPower[]" id="inlineCheckbox1" value="{$item.power}" {if isset($item.isChecked)} checked="checked" {/if}>{$item.name}
+            </label>
+            {/foreach}
+          </div>
+
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label"></label>
+            <div class="col-sm-10 summernote-span">
+              {if $adminUserInfo}
+              <button type="button" class="btn btn-success btn-default adminUserEdit">提交</button>
+              <input type="hidden" name="id" value="{$adminUserInfo.id}">
+              {else}
+              <button type="button" class="btn btn-success btn-default adminUserAdd">提交</button>
+              {/if}
+            </div>
+          </div>
+
+        
+            
+</div>
+</div>
+</form>
+
+
+<script type="text/javascript">
+
+$('.adminUserAdd').click(function() {
+    ajaxPost('adminAddForm','post','adminCreate.html');
+  });
+
+$('.adminUserEdit').click(function() {
+    ajaxPost('adminAddForm','post','adminEdit.html');
+  });
+
+
+function ajaxPost(formId,type,url)
+{
+    var formData = $("#"+formId).serialize();
+    console.log(formData);
+    
+    //modal.show();
+    //serialize() 方法通过序列化表单值，创建 URL 编码文本字符串,这个是jquery提供的方法  
+    $.ajax({  
+      type:type,  
+      url:url,  
+      data:formData,//这里data传递过去的是序列化以后的字符串
+      error:function(error)
+      {
+        $('#myModal-small .modal-title').html('创建信息提示');
+        $('#myModal-small .modal-body').html('信息提交错误！请重新提交');
+        $('#myModal-small').modal('show');
+      },  
+      success:function(data)
+      {
+      //console.log(1111);  
+        //$('#modalContent').val(data.data);
+        if(data.error != 0)
+        {
+          $('#myModal-small .modal-title').html('创建信息提示');
+          $('#myModal-small .modal-body').html(data.data);
+          $('#myModal-small').modal('show');
+        }
+        else
+        {
+          $('#myModal-small .modal-title').html('创建信息提示');
+          $('#myModal-small .modal-body').html(data.data);
+          $('#myModal-small').modal('show');
+          //window.setTimeout("window.location.href='../admin/index.html'",2000);
+        }
+        //modal.show();
+        }  
+    });  
+}  
+</script>

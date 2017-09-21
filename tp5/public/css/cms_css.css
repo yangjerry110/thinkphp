@@ -2,7 +2,7 @@
 * @Author: Jerry Yang
 * @Date:   2017-06-01 10:40:12
 * @Last Modified by:   Jerry Yang
-* @Last Modified time: 2017-06-02 16:58:43
+* @Last Modified time: 2017-07-04 14:26:06
 */
 
 body{ padding:0px; margin:0px; font-family:"微软雅黑"; font-size:12px; background: #BFEFFF;}
@@ -23,32 +23,47 @@ em { font-style:normal;}
 .adminLogin-btn{width:280px; margin-left:50px;}
 
 .admin-top{ width:100%; height: 100px;}
-.admin-left{ width: 300px; color: #000;}
-.accordion-group {
-    background: #FFF;
-    margin-bottom: 2px;
-    border: 1px solid #e5e5e5;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-}
-.accordion-heading .accordion-toggle {
-    display: block;
-    padding: 8px 15px;
-    font-size: 16px;
-    color: #337ab7;
-}
+.admin-left{ width: 20%; color: #000; margin-left: 1.5%; float: left;}
+
 .accordion-toggle {
     cursor: pointer; 
 }
-.accordion-inner
+.accordion-group{ background: #FFF;} 
+
+
+.admin-right
 {
-    padding-bottom: 10px;
+    float: left;
+    width: 75%;
+    margin-left: 1.5%;
+    background: #FFF;
 }
-.accordion-inner ul li 
+
+.admin-right-content
 {
-    padding-left: 30px;
-    line-height: 25px;
-    font-size: 14px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
+
+.groupForm
+{
+    margin-top: 15px;
+}
+
+.summernote-span
+{
+    width: 30%;
+}
+
+.summernote-span-i
+{
+    width: 80%;
+}
+
+.admin-right-padding
+{
+    padding-left: 10%;
+}
+
+
 

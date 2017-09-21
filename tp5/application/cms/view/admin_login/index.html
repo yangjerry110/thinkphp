@@ -1,37 +1,39 @@
-
- <form action="" id="adminLoginForm">
+<form action="" id="adminLoginForm">
 <div class="adminLogin-content">
     <!--下面是用户名输入框-->
-    <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">@</span>
-      <input name="userName" type="text" class="form-control" placeholder="用户名" aria-describedby="basic-addon1">
+    <div class="form-group has-success has-feedback">
+      <div class="input-group">
+        <span class="input-group-addon">@</span>
+        <input name="userName" type="text" placeholder="用户名" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status">
+      </div>
+      <!-- <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+      <span id="inputGroupSuccess1Status" class="sr-only">(success)</span> -->
     </div>
-    <br>
     <!--下面是密码输入框-->
-    <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">@</span>
-      <input name="passWord" type="password" class="form-control" placeholder="密码" aria-describedby="basic-addon1">
+    <div class="form-group has-error has-feedback">
+      <div class="input-group">
+        <span class="input-group-addon">@</span>
+        <input name="passWord" type="password" placeholder="密码" class="form-control" id="inputError2" aria-describedby="inputError2Status">
+      </div>
+       <!--  <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+      <span id="inputError2Status" class="sr-only">(error)</span> -->
     </div>
-    <br>
     <!--下面是登陆按钮,包括颜色控制-->
-    <button type="button" class="btn btn-default adminLogin-btn">登 录</button>
+    <button type="button" class="btn btn-success btn-default adminLogin-btn">登 录</button>
     </div>
 </form>
 
 
 <script type="text/javascript">
 $(document).ready(function(){
-
   $('.adminLogin-btn').click(function() {
     ajaxPost('adminLoginForm','post','../admin/loginCheck.html');
   });
-
  $(document).keydown(function(event){ 
     if(event.keyCode==13){ 
         ajaxPost('adminLoginForm','post','../admin/loginCheck.html');
     } 
 }); 
-
   function ajaxPost(formId,type,url){
     var formData = $("#"+formId).serialize();
     console.log(formData);
@@ -51,18 +53,23 @@ $(document).ready(function(){
       success:function(data){
       //console.log(1111);  
         //$('#modalContent').val(data.data);
-        $('#myModal-small .modal-title').html('登陆信息提示');
-        $('#myModal-small .modal-body').html(data.data);
-        $('#myModal-small').modal('show');
-        if(data.error ==0)
+        if(data.error != 0)
         {
-          setTimeout(window.location.href='../admin/index.html',3000);
+          $('#myModal-small .modal-title').html('登陆信息提示');
+          $('#myModal-small .modal-body').html(data.data);
+          $('#myModal-small').modal('show');
+        }
+        else
+        {
+          $('#myModal-small .modal-title').html('登陆信息提示');
+          $('#myModal-small .modal-body').html(data.data);
+          $('#myModal-small').modal('show');
+          window.setTimeout("window.location.href='../admin/index.html'",2000);
         }
         //modal.show();
         }  
       });  
     }  
-
   //提示框
     /*
     var modal = $.scojs_modal({
@@ -76,6 +83,5 @@ $(document).ready(function(){
       left:'35%',
     });
   */
-
 });
 </script>
